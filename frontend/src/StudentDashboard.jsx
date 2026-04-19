@@ -118,8 +118,11 @@ export const StudentDashboard = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
-                  maxLength={125}
+                  maxLength={127}
                 />
+                <div style={{ fontSize: '11px', color: '#666', textAlign: 'right', marginTop: '2px' }}>
+                  {title.length}/127 characters
+                </div>
               </div>
               <div className="form-group">
                 <textarea
@@ -128,8 +131,11 @@ export const StudentDashboard = () => {
                   onChange={(e) => setDescription(e.target.value)}
                   required
                   rows="5"
-                  maxLength={1000}
+                  maxLength={1023}
                 />
+                <div style={{ fontSize: '11px', color: '#666', textAlign: 'right', marginTop: '2px' }}>
+                  {description.length}/1023 characters
+                </div>
               </div>
               <div className="form-group">
                 <select value={priority} onChange={(e) => setPriority(e.target.value)}>

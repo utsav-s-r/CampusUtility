@@ -179,10 +179,10 @@ export const AdminDashboard = () => {
                   value={announcementTitle}
                   onChange={(e) => setAnnouncementTitle(e.target.value)}
                   required
-                  maxLength={500}
+                  maxLength={255}
                 />
                 <div style={{ fontSize: '12px', color: '#666', textAlign: 'right', marginTop: '4px' }}>
-                  {announcementTitle.length}/500 characters
+                  {announcementTitle.length}/255 characters
                 </div>
               </div>
               <div className="form-group">
@@ -192,10 +192,10 @@ export const AdminDashboard = () => {
                   onChange={(e) => setAnnouncementContent(e.target.value)}
                   required
                   rows="6"
-                  maxLength={5000}
+                  maxLength={2047}
                 />
                 <div style={{ fontSize: '12px', color: '#666', textAlign: 'right', marginTop: '4px' }}>
-                  {announcementContent.length}/5000 characters
+                  {announcementContent.length}/2047 characters
                 </div>
               </div>
               <button type="submit" disabled={announcementTitle.length < 5}>
