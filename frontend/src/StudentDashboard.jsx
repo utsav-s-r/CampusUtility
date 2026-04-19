@@ -118,6 +118,7 @@ export const StudentDashboard = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   required
+                  maxLength={125}
                 />
               </div>
               <div className="form-group">
@@ -127,6 +128,7 @@ export const StudentDashboard = () => {
                   onChange={(e) => setDescription(e.target.value)}
                   required
                   rows="5"
+                  maxLength={1000}
                 />
               </div>
               <div className="form-group">

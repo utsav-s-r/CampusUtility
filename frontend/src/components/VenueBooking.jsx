@@ -189,10 +189,11 @@ export const VenueBooking = ({ onBookingSuccess }) => {
             <div className="form-group" style={{ marginTop: '15px' }}>
               <input 
                 type="text" 
-                placeholder="Enter Event Name (e.g., Annual Tech Meet)" 
+                placeholder="Enter Event Name (Max 30 chars)" 
                 value={eventName}
                 onChange={(e) => setEventName(e.target.value)}
                 required
+                maxLength={30}
               />
             </div>
             <button 
