@@ -174,7 +174,7 @@
 
 .announcement-item .badge {
   order: -1; /* Keep badge on the left even in normal row */
-  margin-left: 0;
+  margin-left: -15px; /* Shift badge 15px towards left */
   flex-shrink: 0;
 }
 
@@ -257,8 +257,10 @@
 .announcement-header {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   width: 100%;
+  overflow: hidden;
+  min-width: 0;
 }
 
 .date {
