@@ -158,14 +158,17 @@
 
 .announcement-item {
   min-height: 80px;
-  flex-direction: row;
-  justify-content: space-between;
+  display: flex;
+  flex-direction: row-reverse; /* Put badge on the left */
+  justify-content: flex-end;   /* Align everything to the left */
+  gap: 16px;
   align-items: center;
   cursor: pointer;
   border: 1px solid #eee;
   border-left: 6px solid #667eea;
   background: #fff;
   padding: 12px 20px;
+  max-width: 95%; /* Reduce width from the right */
 }
 
 .announcement-item h3 {

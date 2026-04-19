@@ -55,14 +55,14 @@ export const getByUserId = async (userId, limit = 10, offset = 0) => {
       `SELECT b.*, r.name as room_name, r.capacity, r.location 
        FROM bookings b 
        JOIN rooms r ON b.room_id = r.id 
-       WHERE b.user_id = $1 AND b.status IN ('CONFIRMED', 'PENDING')
+       WHERE b.user_id = $1 AND b.status IN ('CONFIRMED', 'PENDING', 'APPROVED', 'REJECTED', 'CANCELLED')
        ORDER BY b.start_time DESC 
        LIMIT $2 OFFSET $3`,
       [userId, limit, offset]
     );
 
     const countResult = await query(
-      `SELECT COUNT(*) FROM bookings WHERE user_id = $1 AND status IN ('CONFIRMED', 'PENDING')`,
+      `SELECT COUNT(*) FROM bookings WHERE user_id = $1 AND status IN ('CONFIRMED', 'PENDING', 'APPROVED', 'REJECTED', 'CANCELLED')`,
       [userId]
     );
 
