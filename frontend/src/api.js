@@ -1,4 +1,6 @@
-const API_BASE_URL = 'http://localhost:5001/api';
+const API_BASE_URL = window.location.origin.includes('localhost') 
+  ? 'http://localhost:5001/api' 
+  : '/_/backend/api';
 
 // Helper for making API requests with automatically injected authorization headers
 const fetchAPI = async (endpoint, options = {}) => {
