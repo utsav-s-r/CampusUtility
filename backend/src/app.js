@@ -104,19 +104,25 @@ app.use(errorHandler);
 // Server Startup
 // ============================================
 
-const server = app.listen(PORT, () => {
-  logger.info(`🚀 Server is running on http://${process.env.HOST || 'localhost'}:${PORT}`);
-  logger.info(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
-  logger.info(`✅ CORS Origin: ${process.env.CORS_ORIGIN || 'http://localhost:3000'}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  const server = app.listen(PORT, () => {
+    logger.info(`🚀 Server is running on http://${process.env.HOST || 'localhost'}:${PORT}`);
+    logger.info(`📝 Environment: ${process.env.NODE_ENV || 'development'}`);
+    logger.info(`✅ CORS Origin: ${process.env.CORS_ORIGIN || 'http://localhost:3000'}`);
+  });
+}
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
   logger.info('SIGTERM signal received: closing HTTP server');
-  server.close(() => {
-    logger.info('HTTP server closed');
+  if (typeof server !== 'undefined') {
+    server.close(() => {
+      logger.info('HTTP server closed');
+      process.exit(0);
+    });
+  } else {
     process.exit(0);
-  });
+  }
 });
 
 export default app;
