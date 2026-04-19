@@ -17,6 +17,7 @@
 .dashboard-header h1 {
   background: linear-gradient(135deg, #667eea, #764ba2);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
   font-size: 28px;
@@ -175,6 +176,7 @@
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   flex: 1;
@@ -317,6 +319,7 @@
   padding: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow-y: auto;
 }
@@ -332,11 +335,14 @@
 .modal-body {
   flex: 4;
   padding: 32px;
+  padding-bottom: 48px; /* Move content slightly up from bottom scroller area */
   overflow-y: auto;
   font-size: 17px;
   line-height: 1.9;
   color: #2d3748;
   white-space: pre-wrap;
+  overflow-wrap: break-word; /* Fix long word overflow */
+  word-break: break-word;    /* Fix long word overflow */
   scrollbar-width: thin;
   scrollbar-color: #cbd5e0 #f7fafc;
   background: #fff;
