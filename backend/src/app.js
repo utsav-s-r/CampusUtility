@@ -21,18 +21,26 @@ app.use(helmet()); // Set security HTTP headers
 // CORS configuration
 const allowedOrigins = process.env.CORS_ORIGIN 
   ? process.env.CORS_ORIGIN.split(',') 
-  : ['http://localhost:3000'];
+  : ['http://localhost:8000', 'http://localhost:3000', 'http://localhost:5001'];
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // allow requests with no origin (like mobile apps or curl requests)
+      // Allow requests with no origin (like mobile apps or curl)
       if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
+      
+      // In production, if CORS_ORIGIN is '*', allow all
+      if (process.env.NODE_ENV === 'production' && process.env.CORS_ORIGIN === '*') {
+        return callback(null, true);
+      }
+
+      // Allow if origin is in the allowed list or if it's a Vercel preview URL
+      if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app')) {
+        return callback(null, true);
+      } else {
         var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
         return callback(new Error(msg), false);
       }
-      return callback(null, true);
     },
     credentials: true,
     optionsSuccessStatus: 200,
