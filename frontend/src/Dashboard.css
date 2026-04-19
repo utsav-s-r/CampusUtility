@@ -157,7 +157,7 @@
 }
 
 .announcement-item {
-  height: 80px;
+  min-height: 80px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -165,7 +165,7 @@
   border: 1px solid #eee;
   border-left: 6px solid #667eea;
   background: #fff;
-  padding: 0 20px;
+  padding: 12px 20px;
 }
 
 .announcement-item h3 {

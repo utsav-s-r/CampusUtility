@@ -132,39 +132,68 @@ export const AdminDashboard = () => {
         {error && <div className="error">{error}</div>}
 
         {activeTab === 'issues' && (
-          <div>
-            <div className="card">
-              <h2>Issue Management</h2>
-              {issues.length === 0 ? (
-                <p>No issues reported yet</p>
-              ) : (
-                <div className="issues-grid">
-                  {issues.map(issue => (
-                    <div key={issue.id} className="issue-card">
-                      <div className="issue-header">
-                        <h3>{issue.title}</h3>
-                        <span style={{ fontSize: '12px', color: '#666' }}>
-                          Priority: <strong>{issue.priority}</strong>
-                        </span>
-                      </div>
-                      <p>{issue.description}</p>
-                      <div className="issue-status">Status: {getStatusBadge(issue.status)}</div>
-                      <div className="issue-actions">
-                        <select 
-                          value={issue.status}
-                          onChange={(e) => handleUpdateIssueStatus(issue.id, e.target.value)}
-                          className="status-select"
-                        >
-                          <option value="OPEN">Open</option>
-                          <option value="IN_PROGRESS">In Progress</option>
-                          <option value="RESOLVED">Resolved</option>
-                        </select>
-                      </div>
+          <div className="card">
+            <h2>Issue Management</h2>
+            {issues.length === 0 ? (
+              <p>No issues reported yet</p>
+            ) : (
+              <div className="announcements-list">
+                {issues.map(issue => (
+                  <div 
+                    key={issue.id} 
+                    className="announcement-item" 
+                    onClick={() => setError(null) || setIssues(issues.map(i => i.id === issue.id ? { ...i, showModal: true } : i))}
+                  >
+                    <div className="announcement-header">
+                      <h3>{issue.title}</h3>
+                      <span className="date">
+                        🔧 Priority: <strong>{issue.priority}</strong> | Reported: {new Date(issue.created_at).toLocaleDateString()}
+                      </span>
                     </div>
-                  ))}
+                    <div 
+                      className="badge"
+                      style={{ backgroundColor: getStatusBadge(issue.status).props.style.backgroundColor, marginLeft: '12px' }}
+                    >
+                      {issue.status}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {issues.filter(i => i.showModal).map(selectedIssue => (
+              <div key={selectedIssue.id} className="modal-overlay" onClick={() => setIssues(issues.map(i => i.id === selectedIssue.id ? { ...i, showModal: false } : i))}>
+                <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                  <button className="modal-close-btn" onClick={() => setIssues(issues.map(i => i.id === selectedIssue.id ? { ...i, showModal: false } : i))}>✕</button>
+                  <div className="modal-header">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '14px', fontWeight: 'bold' }}>{selectedIssue.priority} PRIORITY</span>
+                    </div>
+                    <h2>{selectedIssue.title}</h2>
+                    <div className="modal-meta">
+                      <span>📅 Reported on: {new Date(selectedIssue.created_at).toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                  <div className="modal-body">
+                    <p style={{ marginBottom: '24px' }}>{selectedIssue.description}</p>
+                    
+                    <div className="admin-actions-box" style={{ background: '#f8f9fa', padding: '20px', borderRadius: '12px', border: '1px solid #eee' }}>
+                      <label style={{ display: 'block', marginBottom: '10px', fontWeight: 'bold', color: '#4a5568' }}>Update Issue Status</label>
+                      <select 
+                        value={selectedIssue.status}
+                        onChange={(e) => handleUpdateIssueStatus(selectedIssue.id, e.target.value)}
+                        className="status-select"
+                        style={{ padding: '12px', width: '100%', borderRadius: '8px' }}
+                      >
+                        <option value="OPEN">Open</option>
+                        <option value="IN_PROGRESS">In Progress</option>
+                        <option value="RESOLVED">Resolved</option>
+                      </select>
+                    </div>
+                  </div>
                 </div>
-              )}
-            </div>
+              </div>
+            ))}
           </div>
         )}
 
