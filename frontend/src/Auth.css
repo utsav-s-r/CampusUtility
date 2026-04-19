@@ -1,0 +1,164 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.auth-box {
+  background: white;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.auth-box h1 {
+  font-size: 32px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 8px;
+}
+
+.auth-box h2 {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.form-group input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.auth-box button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  margin-top: 8px;
+  transition: all 0.3s ease;
+}
+
+.auth-box button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.divider {
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  margin: 24px 0;
+  position: relative;
+}
+
+.divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e0e0e0;
+  z-index: 0;
+}
+
+.divider {
+  position: relative;
+  z-index: 1;
+  background: white;
+  padding: 0 10px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.role-toggle {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.role-btn {
+  padding: 10px;
+  border-radius: 6px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: #666;
+}
+
+.role-btn:hover:not(:disabled) {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.role-btn.active {
+  border-color: #667eea;
+  background: #f0f4ff;
+  color: #667eea;
+}
+
+.toggle {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.toggle-btn {
+  background: none;
+  color: #667eea;
+  font-weight: 600;
+  padding: 0;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.toggle-btn:hover {
+  color: #764ba2;
+}
+
+.error {
+  background: #fee;
+  color: #c33;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}

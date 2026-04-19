@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Build & Logs
+dist/
+build/
+*.log
+
+# Sensitive
+auth.config.js
+secrets/
+private/
+credentials/
+

@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Build
+dist/
+build/
+.cache/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Sensitive
+secrets/
+private/
+credentials/
+*.log
+

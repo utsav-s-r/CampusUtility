@@ -1,0 +1,16 @@
+{
+  "name": "copilotdemo",
+  "version": "1.0.0",
+  "description": "A comprehensive full-stack application demonstrating effective use of GitHub Copilot throughout development.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
